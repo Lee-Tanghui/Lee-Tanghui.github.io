@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一. 构造函数,原型,实例三者的关系1. 构造函数:构造函数是创建对象的一种常用方式, 其他创建对象的方式还包括工厂模式, 原型模式, 对象字面量等.我们来看一个简单的构造函数:1234function Product (name, role)&amp;#123; //构造函数的命名约定第一个字母使用大写的形式!    this.name = name;    this.role = role;&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解原型、原型链、继承">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/inherit/index.html">
+<meta property="og:site_name" content="李棠辉的个人博客">
+<meta property="og:description" content="一. 构造函数,原型,实例三者的关系1. 构造函数:构造函数是创建对象的一种常用方式, 其他创建对象的方式还包括工厂模式, 原型模式, 对象字面量等.我们来看一个简单的构造函数:1234function Product (name, role)&amp;#123; //构造函数的命名约定第一个字母使用大写的形式!    this.name = name;    this.role = role;&amp;#125">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/ppntgpldmqim18jbqfkwy7ll/image_1bluplrdgp0qg361aquq0rj5v9.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/nnk52v1u9sqf8tugimf8hqbr/image_1blurjn2aa1bauiiq8mrb1p8tm.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/k3uhaltri7g4y9o8wd37dr0p/image_1blut26tt1ghb12jo1ir8gpm1n9913.png">
+<meta property="og:updated_time" content="2017-07-26T09:52:09.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解原型、原型链、继承">
+<meta name="twitter:description" content="一. 构造函数,原型,实例三者的关系1. 构造函数:构造函数是创建对象的一种常用方式, 其他创建对象的方式还包括工厂模式, 原型模式, 对象字面量等.我们来看一个简单的构造函数:1234function Product (name, role)&amp;#123; //构造函数的命名约定第一个字母使用大写的形式!    this.name = name;    this.role = role;&amp;#125">
+<meta name="twitter:image" content="http://static.zybuluo.com/leeahui424/ppntgpldmqim18jbqfkwy7ll/image_1bluplrdgp0qg361aquq0rj5v9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/26/inherit/"/>
+
+
+
+
+
+  <title>深入理解原型、原型链、继承 | 李棠辉的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李棠辉的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/inherit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李棠辉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26054274?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李棠辉的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解原型、原型链、继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T17:46:07+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/26/inherit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/26/inherit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一-构造函数-原型-实例三者的关系"><a href="#一-构造函数-原型-实例三者的关系" class="headerlink" title="一. 构造函数,原型,实例三者的关系"></a><strong>一. 构造函数,原型,实例三者的关系</strong></h3><h4 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1. 构造函数:"></a><strong>1. 构造函数</strong>:</h4><p>构造函数是创建对象的一种常用方式, 其他创建对象的方式还包括工厂模式, 原型模式, 对象字面量等.我们来看一个简单的构造函数:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span> (<span class="params">name, role</span>)</span>&#123; <span class="comment">//构造函数的命名约定第一个字母使用大写的形式!</span></div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.role = role;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>( 1 ) 每一个构造函数都有一个<code>prototype</code>属性,我们可以在Chorme控制台中打印出<code>Product.prototype</code>属性.</p>
+<p><img src="http://static.zybuluo.com/leeahui424/ppntgpldmqim18jbqfkwy7ll/image_1bluplrdgp0qg361aquq0rj5v9.png" alt="图一:构造函数的prototype属性"></p>
+<a id="more"></a>
+<p>( 2 ) 通过控制台答应出的结果可以发现,<code>Product.prototype</code>属性其实是一个指针,指向一个对象, 该对象拥有一个<code>constructor</code>属性.( <code>__proto__</code>属性是浏览器引入的非标准属性,方便开发者调试用的,可以不予理会!)<br>( 3 ) 所以,构造函数中的<code>prototype</code>属性指向一个<strong>对象</strong>, 该对象就是我们接下来要说的<strong>原型</strong></p>
+<h4 id="2-原型"><a href="#2-原型" class="headerlink" title="2. 原型"></a><strong>2. 原型</strong></h4><p>《Javascript高级程序设计》中是这样描述<strong>原型</strong>这个概念的: </p>
+<blockquote>
+<p>无论什么时候, 只要创建一个新函数, 就会根据一组特定的规则为该函数创建一个<code>prototype</code>属性, 这个属性指向函数的原型对象. 在默认情况下, 所有原型对象都会自动获得一个<code>constructor</code>()构造函数属性,这个属性包含一个指向<code>prototype</code>属性所在函数的指针. </p>
+</blockquote>
+<p>我相信看完这句话的你是懵逼的,下面我来解释一下这句话:</p>
+<p>( 1 ) 构造函数的<code>prototype</code>属性所指向的对象我们将其称为<strong>原型</strong><br>( 2 ) <strong>原型</strong>这个对象中,有一个<code>constructor</code>属性又指回其构造函数本身.<br>( 3 ) 下面的图二,可以更清晰的弄明白两者之间的关系.<br><img src="http://static.zybuluo.com/leeahui424/nnk52v1u9sqf8tugimf8hqbr/image_1blurjn2aa1bauiiq8mrb1p8tm.png" alt="图二: 构造函数与原型的关系"></p>
+<h4 id="3-实例"><a href="#3-实例" class="headerlink" title="3. 实例"></a><strong>3. 实例</strong></h4><p>通过构造函数创建对象的过程我们称之为<strong>实例化</strong>，创建出来的对象称为<strong>实例</strong>．现在我们通过我们的Product这个构造函数创建一个实例(对象).<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span> (<span class="params">name, role</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.role = role;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Product(<span class="string">'apple'</span>, <span class="string">'fruit'</span>);</div></pre></td></tr></table></figure></p>
+<p>( 1 ) 现在我们来为原型添加一个方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Product.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我是一个很甜的'</span>+ <span class="keyword">this</span>.name +<span class="string">', 买我!'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>( 2 ) 在实例中调用该方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p1.greet();  <span class="comment">//我是一个很甜的apple, 买我!</span></div></pre></td></tr></table></figure></p>
+<p>可以看到,我们在原型中添加的方法,同时实例是可以使用的. 所以,我们可以得出以下结论:</p>
+<blockquote>
+<p><strong>原型里面的所有属性和方法会连接到其对应的构造函数的实例上 !</strong></p>
+</blockquote>
+<p>( 3 ) 构造/实例/原型三角形<br>通过下面的构造/实例/原型三角形可以更好的理解三者之间的关系:<br><img src="http://static.zybuluo.com/leeahui424/k3uhaltri7g4y9o8wd37dr0p/image_1blut26tt1ghb12jo1ir8gpm1n9913.png" alt="图三：构造／实例／原型三角形"></p>
+<h4 id="４-结论"><a href="#４-结论" class="headerlink" title="４. 结论"></a><strong>４. 结论</strong></h4><ul>
+<li><strong>站在构造函数角度看</strong>: 函数名.prototype这个对象是构造函数的原型属性</li>
+<li><strong>站在实例对象角度看</strong>: 函数名.prototype这个对象是实例对象的原型对象</li>
+<li><strong>原型式继承</strong>: 原型对象的属性和方法可以直接被实例对象所访问.</li>
+</ul>
+<h3 id="二-原型链"><a href="#二-原型链" class="headerlink" title="二. 原型链"></a><strong>二. 原型链</strong></h3><h4 id="1-理解原型链"><a href="#1-理解原型链" class="headerlink" title="1. 理解原型链"></a><strong>1. 理解原型链</strong></h4><p>从第一部分的结论中我们知道了,实例对象可以直接访问原型对象的属性和方法. 其实原型对象本质上也是一个对象,它其实是由<code>new Object()</code>实例化出来的.该原型对象也可以访问<code>Object.prototype</code>的所有属性和方法.这样其实就构成了<strong>原型链</strong>这一个重要的概念.</p>
+<h4 id="2-代码分析"><a href="#2-代码分析" class="headerlink" title="2. 代码分析"></a><strong>2. 代码分析</strong></h4><p>下面我们来分析以下一段代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建Product构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">'apple'</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//给Product构造函数的原型增加方法</span></div><div class="line">Product.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我是一个很甜的'</span>+ <span class="keyword">this</span>.name +<span class="string">', 买我!'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//创建SalesProduct构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SalesProduct</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">'bad apple'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//将Product的实例对象直接赋给SalesProduct的原型</span></div><div class="line">SalesProduct.prototype = <span class="keyword">new</span> Product();</div><div class="line"></div><div class="line"><span class="comment">//给SalesProduct的原型一个方法</span></div><div class="line">SalesProduct.prototype.anotherGreet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我是一个'</span> + <span class="keyword">this</span>.name + <span class="string">',不要买我!'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//实例化SalesProduct</span></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> SalesProduct(); </div><div class="line">p2.greet(); <span class="comment">//我是一个很甜的bad apple, 买我!</span></div></pre></td></tr></table></figure></p>
+<p>( 1 ) 在上面的代码中,我们没有使用<code>SalesProduct</code>默认提供的原型,而是将其换了一个新的原型.该新原型是<code>Product</code>的实例.<br>( 2 ) 所以,该新原型不仅作为<code>Product</code>的实例拥有其全部属性和方法, 其内部还拥有一个指针,指向<code>Product.prototype</code>.我们可以从调用<code>p2.greet()</code>的结果可以看出.<br>( 3 ) 所以,可以得出以下的链条 <code>p2</code> <strong>=&gt;</strong> <code>SalesProduct.prototype</code> <strong>=&gt;</strong> <code>Product.prototype</code> <strong>=&gt;</strong> <code>Object.prototype</code><br>( 4 ) 上面的这一个链条就形成了原型链.值得注意的是,<code>Product.prototype</code>最后还指向了<code>Object.prototype</code>,这也是所有的自定义对象都会具有<code>toString()</code>,<code>hasOwnProperty()</code>等方法的原因.</p>
+<h4 id="3-重要结论"><a href="#3-重要结论" class="headerlink" title="3. 重要结论"></a><strong>3. 重要结论</strong></h4><p><strong>( 1 ) 原型的顶端</strong>: <code>Object.prototype</code>, 任何一个默认的内置的函数的原型都继承自<code>Object.prototype</code>.<br><strong>( 2 ) 原型链</strong> : Js的对象结构中出现的指向<code>Object.prototype</code>的一系列原型对象,我们称之为原型链.<br><strong>( 3 ) 属性搜索原则</strong> : 在访问对象的属性和方法时, 会在当前对象中查找, 如果没有找到, 会一直沿着原型链上的原型对象向上查找, 直到找到<code>Object.prototype</code>为止<br><strong>( 4 ) 写入原则</strong> : 如果给对象设置属性和方法, 都是在当前对象上设置.</p>
+<h3 id="三-实现继承的其他方法"><a href="#三-实现继承的其他方法" class="headerlink" title="三. 实现继承的其他方法"></a><strong>三. 实现继承的其他方法</strong></h3><p>原型链继承是Javascript中实现继承的主要方式,但是原型链的继承存在一个问题,就是当对象有一个引用类型的属性时,该引用类型会被其后的所有实例所共享.下面的代码可以说明这一个问题.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TypeOne</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">TypeTwo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"></div><div class="line">    TypeTwo.prototype = <span class="keyword">new</span> TypeOne();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> t1 = <span class="keyword">new</span> TypeTwo();</div><div class="line">    t1.colors.push(<span class="string">'black'</span>);</div><div class="line">    <span class="built_in">console</span>.log(t1.colors);  <span class="comment">//["red", "blue", "green", "black"]</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> t2 = <span class="keyword">new</span> TypeTwo();</div><div class="line">    <span class="built_in">console</span>.log(t2.colors); <span class="comment">//["red", "blue", "green", "black"]</span></div></pre></td></tr></table></figure></p>
+<p>可以看,在<code>t1</code>这个实例中进行的<code>colors</code>这个属性的更改在<code>t2</code>这个实例中反映了出来.也就是说,所有的实例对象共享同一<code>colors</code>属性.</p>
+<p>基于原型链继承的这一缺点,我们需要通过其他方式实现继承,下面来介绍几个常用的方法.</p>
+<h4 id="1-借用构造函数"><a href="#1-借用构造函数" class="headerlink" title="1. 借用构造函数"></a><strong>1. 借用构造函数</strong></h4><p>在解决原型中包含引用类型值所带来问题的过程中, 开发人员开始使用一种叫借用构造函数的技术. 这种技术的基本思想相当简单, 即在子类型构造函数的内部调用超类型构造函数. 函数只不过是在特定环境中执行代码的对象, 因此, 通过使用apply()和call()方法可以在新创建的对象上执行构造函数,我们通过以下代码来解决上面的问题:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TypeOne</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TypeTwo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    TypeOne.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">TypeTwo.prototype = <span class="keyword">new</span> TypeOne();</div><div class="line"></div><div class="line"><span class="keyword">var</span> t1 = <span class="keyword">new</span> TypeTwo();</div><div class="line">t1.colors.push(<span class="string">'black'</span>);</div><div class="line"><span class="built_in">console</span>.log(t1.colors);  <span class="comment">//["red", "blue", "green", "black"]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> t2 = <span class="keyword">new</span> TypeTwo();</div><div class="line"><span class="built_in">console</span>.log(t2.colors); <span class="comment">//["red", "blue", "green"]</span></div></pre></td></tr></table></figure></p>
+<h4 id="2-混入继承"><a href="#2-混入继承" class="headerlink" title="2. 混入继承"></a><strong>2. 混入继承</strong></h4><p>我们可以通过一个克隆函数<code>extend()</code>,将一组对象中的所有属性和方法克隆到一个对象中,这种实现继承的方法我们,我们将其称为混入继承.在jQuery的源码中,大量的采用了该方法.该克隆函数代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span> (<span class="params">des, objs</span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; objs.length; i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> objs[i])&#123;</div><div class="line">            <span class="keyword">if</span>(objs[i].hasOwnProperty(key))&#123;</div><div class="line">                des[key] = objs[i][key];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面,我们通过该克隆函数实现三个对象中属性和方法继承到一个对象上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var o1 = &#123;</div><div class="line">    name : &apos;Lee_Tanghui&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o2 = &#123;</div><div class="line">    sayHi: function ()&#123;</div><div class="line">        console.log(&apos;你好,我是&apos; + this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o3 = &#123;</div><div class="line">    introduce: function ()&#123;</div><div class="line">        console.log(&apos;我来自重庆&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;&#125;;</div><div class="line"></div><div class="line"></div><div class="line">//调用该方法实现让obj继承o1,o2,o3</div><div class="line">extend(obj, [o1, o2, o3]);</div><div class="line"></div><div class="line">console.log(obj.name); //Lee_Tanghui</div><div class="line">obj.sayHi(); //你好,我是Lee_Tanghui</div><div class="line">obj.introduce(); //我来自重庆</div></pre></td></tr></table></figure></p>
+<p>从上面的结果可以看到,obj对象继承了来o1,o2,o3的所有方法和属性.</p>
+<h4 id="3-组合继承"><a href="#3-组合继承" class="headerlink" title="3. 组合继承"></a><strong>3. 组合继承</strong></h4><p>组合继承,指的是将原型链和借用构造函数的技术组合到一块. 从而发挥二者之长的一种继承模式. 其背后的思路是使用原型链实现对原型属性和方法的继承, 而通过借用构造函数来实现对实例属性的继承. 这样, 既通过在原型上定义方法实现了函数复用, 又能保证每个实例都有它自己的属性.我们可以通过以下代码来了解组合继承:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">function TypeOne(name)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.colors = [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">TypeOne.prototype.sayName = function()&#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function TypeTwo(name, age)&#123;</div><div class="line">    TypeOne.call(this, name); //通过构造函数实现对实例属性的继承</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">TypeTwo.prototype = new TypeOne(); //通过原型链实现对原型属性和方法的继承</div><div class="line"></div><div class="line"></div><div class="line">TypeTwo.prototype.sayAge = function() &#123;</div><div class="line">    console.log(this.age);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var t1 = new TypeTwo(&apos;Lee_Tanghui&apos;, 23);</div><div class="line">t1.colors.push(&apos;black&apos;);</div><div class="line">console.log(t1.colors);  //[&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;black&quot;]</div><div class="line">t1.sayName(); //Lee_Tanghui</div><div class="line">t1.sayAge(); //23</div><div class="line"></div><div class="line">var t2 = new TypeTwo(&apos;Joe&apos;, 24);</div><div class="line">console.log(t2.colors); //[&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]</div><div class="line">t2.sayName(); //Joe</div><div class="line">t2.sayAge(); //24</div></pre></td></tr></table></figure></p>
+<h4 id="4-原型式继承"><a href="#4-原型式继承" class="headerlink" title="4. 原型式继承"></a><strong>4. 原型式继承</strong></h4><p>原型式继承是借助一个函数,通过传递原型对象作为参数,从而创建新对象的方式实现继承.该函数由道格拉斯提出,代码源码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在ECMAScript 5中新增加了Object.create()方法规范化了原型式继承.我们可以通过该方法实现将一下对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'joe'</span>,</div><div class="line">        <span class="attr">age</span> : <span class="number">24</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;key: &quot;name&quot;, value: &quot;joe&quot; &#125;, &#123;key: &quot;age&quot;, value: 24&#125;]的数组的形式</div></pre></td></tr></table></figure></p>
+<p>代码实现如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    <span class="attr">name</span> : <span class="string">'joe'</span>,</div><div class="line">    <span class="attr">age</span> : <span class="number">24</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//创建构造函数,用来排列键值对</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SortedList</span> (<span class="params"> obj </span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> key <span class="keyword">in</span> obj ) &#123;</div><div class="line">        <span class="keyword">this</span>.push(&#123;</div><div class="line">            <span class="attr">key</span> : key,</div><div class="line">            <span class="attr">value</span> : obj[ key ]</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用Object.create()方法,继承数组的所有属性方法</span></div><div class="line">SortedList.prototype = <span class="built_in">Object</span>.create( <span class="built_in">Array</span>.prototype );</div><div class="line"></div><div class="line"><span class="comment">//构造函数的实例化</span></div><div class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> SortedList( person );</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log( list ); <span class="comment">//[&#123;key: "name", value: "joe" &#125;, &#123;key: "age", value: 24&#125;]</span></div></pre></td></tr></table></figure></p>
+<h3 id="完"><a href="#完" class="headerlink" title="完"></a>完</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/26/location/" rel="next" title="H5获取用户位置API + 百度地图API介绍">
+                <i class="fa fa-chevron-left"></i> H5获取用户位置API + 百度地图API介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/26054274?v=4&s=460"
+               alt="李棠辉" />
+          <p class="site-author-name" itemprop="name">李棠辉</p>
+           
+              <p class="site-description motion-element" itemprop="description">嘿!你看见过我的小熊吗?</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Lee-Tanghui" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lockleehui" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e80a34fa625b" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-构造函数-原型-实例三者的关系"><span class="nav-number">1.</span> <span class="nav-text">一. 构造函数,原型,实例三者的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-构造函数"><span class="nav-number">1.1.</span> <span class="nav-text">1. 构造函数:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-原型"><span class="nav-number">1.2.</span> <span class="nav-text">2. 原型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-实例"><span class="nav-number">1.3.</span> <span class="nav-text">3. 实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#４-结论"><span class="nav-number">1.4.</span> <span class="nav-text">４. 结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-原型链"><span class="nav-number">2.</span> <span class="nav-text">二. 原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-理解原型链"><span class="nav-number">2.1.</span> <span class="nav-text">1. 理解原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-代码分析"><span class="nav-number">2.2.</span> <span class="nav-text">2. 代码分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-重要结论"><span class="nav-number">2.3.</span> <span class="nav-text">3. 重要结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-实现继承的其他方法"><span class="nav-number">3.</span> <span class="nav-text">三. 实现继承的其他方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-借用构造函数"><span class="nav-number">3.1.</span> <span class="nav-text">1. 借用构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-混入继承"><span class="nav-number">3.2.</span> <span class="nav-text">2. 混入继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-组合继承"><span class="nav-number">3.3.</span> <span class="nav-text">3. 组合继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-原型式继承"><span class="nav-number">3.4.</span> <span class="nav-text">4. 原型式继承</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完"><span class="nav-number">4.</span> <span class="nav-text">完</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李棠辉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/07/26/inherit/';
+          this.page.identifier = '2017/07/26/inherit/';
+          this.page.title = '深入理解原型、原型链、继承';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
