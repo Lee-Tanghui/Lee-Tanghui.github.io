@@ -269,6 +269,250 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/08/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李棠辉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26054274?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李棠辉的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/webpack/" itemprop="url">React环境配置 &  Webpack实现热加载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T12:24:07+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/08/webpack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/08/webpack/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-React环境配置"><a href="#一-React环境配置" class="headerlink" title="一.React环境配置"></a><strong>一.React环境配置</strong></h2><p>####<strong>1.1  配置前的准备</strong></p>
+<blockquote>
+<ul>
+<li>新建一个空文件夹,命名为项目名.点击文件夹,进入根目录下 </li>
+<li>在项目文件夹的根目录下开启命令行, window操作系统为在根目录下 <strong>shift + 鼠标右键</strong>, 再点击 <strong>open command window</strong>(打开window命令行工具)</li>
+<li>注意: 以下的操作都是在项目文件夹的<strong>根目录下的cmd中</strong>进行操作.</li>
+<li>考虑到下载包的效率, 下载的操作我这里全部使用的<strong>cnpm</strong>, 同样可以使用<strong>npm</strong>. <strong>cnpm</strong>为<strong>npm</strong>的淘宝镜像<a href="http://npm.taobao.org/" target="_blank" rel="external">http://npm.taobao.org/</a></li>
+</ul>
+</blockquote>
+<p>####<strong>1.2 初始化 <em>package.json</em> 配置文件</strong><br><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>npm init</p>
+</blockquote>
+<ol>
+<li><p>点击Enter之后,会出现包的一些配置参数,根据需求设置即可.<br><img src="http://static.zybuluo.com/leeahui424/fta85v4q8egv7ztr3hkyvtww/image_1bmvp3pua7be1fk8n7mqgvb75m.png" alt="npm init"></p>
+</li>
+<li><p>最后出现<code>Is this ok?</code>,输入<code>yes</code>,就可以看见出现了一个 <em>package.json</em> 文件.该配置文件为包的目录文件.<br><img src="http://static.zybuluo.com/leeahui424/xreixeyqnmomg19nwh30wfx1/image_1bmvphs691thrs5arpne8f1f8b2d.png" alt="npm init配置完成"></p>
+</li>
+</ol>
+<p>####<strong>1.3 安装React和React-DOM</strong></p>
+<p><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install –save react react-dom </p>
+</blockquote>
+<p>####<strong>1.4 安装babel及其依赖</strong></p>
+<p><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install babel-preset-es2015 babelify babel-preset-react  babel-plugin-react-html-attrs babel-loader –save</p>
+</blockquote>
+<p>####<strong>1.5 React和Babel安装完成后的目录如下</strong><br><img src="http://static.zybuluo.com/leeahui424/ul69f29o9ealas85bqyczors/image_1bmvq0v1nv0hn017j21mn57j637.png" alt="安装完react和babel后的文件目录"></p>
+<ul>
+<li>此时可以看到,项目文件夹内有了 <em>node_modules</em> 这个文件夹, 且 <em>package.json</em> 这个文件中,也有了我们安装的 react 和 babel 的包.</li>
+</ul>
+<hr>
+<h2 id="二-webpack安装"><a href="#二-webpack安装" class="headerlink" title="二.webpack安装"></a><strong>二.webpack安装</strong></h2><p>####<strong>2.1 在全局下安装webpack</strong></p>
+<p><strong>在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install -g webpack</p>
+</blockquote>
+<p>####<strong>2.2 在全局下安装webpack-dev-server</strong></p>
+<p><strong>1. 在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install -g webpack-dev-server</p>
+</blockquote>
+<p><strong>2. 如果安装时出现:<br><code>Error: EPERM: operation not permitted, mkdir &#39;C:\Program Files\nodejs\node_modules\webpack-dev-server_tmp&#39;
+    at Error (native)</code>报错信息,请使用windows + x 使用admin权限进行安装</strong></p>
+<p>####<strong>2.3 在项目根目录下下安装webpack</strong></p>
+<p><strong>在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install webpack –save</p>
+</blockquote>
+<p>####<strong>2.4 在项目根目录安装webpack-dev-server</strong></p>
+<p><strong>1. 在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install webpack-dev-server –save</p>
+</blockquote>
+<p><strong>2. 如果安装时出现:<br><code>Error: EPERM: operation not permitted, mkdir &#39;C:\Program Files\nodejs\node_modules\webpack-dev-server_tmp&#39;
+    at Error (native)</code>报错信息,请使用windows + x 使用admin权限进行安装</strong></p>
+<p>####<strong>2.5 Webpack安装完成后的目录如下</strong></p>
+<blockquote>
+<p>此时可以看到我们的 <em>package.json</em>文件中对添加了webpack和webpack-dev-server的的包.</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/leeahui424/t388yqd048ln9vncy7pvzcyk/image_1bmvs2tca1h6o1e3d12bb105mvjg16.png" alt="web安装完成后的文件目录"></p>
+<hr>
+<h2 id="三-实现webpack热加载-以Hello-World-举例"><a href="#三-实现webpack热加载-以Hello-World-举例" class="headerlink" title="三.实现webpack热加载(以Hello World!举例)"></a><strong>三.实现webpack热加载(以Hello World!举例)</strong></h2><p>####<strong>3.1 在根目录下新建index.html</strong></p>
+<ul>
+<li>index.html中内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;example&quot;&gt;我是主页&lt;/div&gt;</div><div class="line">&lt;script src=&quot;./src/bundle.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>这里的<code>bundle.js</code>是随后webpack打包后生成的文件.</li>
+<li>此时打开index.html,效果如下<br><img src="http://static.zybuluo.com/leeahui424/26k8jnqgbwhp5o7g8pkqcir6/image_1bmvtapvjtq5ptc1d5n4skmdu1j.png" alt="未编译之前的index.html"></li>
+</ul>
+<p>####<strong>3.2 新建index.js用作入口文件</strong></p>
+<ul>
+<li>在根目录下新建src文件夹</li>
+<li>在src文件夹下新建js文件夹</li>
+<li>在js文件夹下新建index.js文件, index.js内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;);</div><div class="line">var ReactDOM = require(&apos;react-dom&apos;);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;h1&gt;Hello World!&lt;/h1&gt;,</div><div class="line">    document.getElementById(&apos;example&apos;)</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>####<strong>3.3 在根目录下新建webpack.config.js</strong></p>
+<ul>
+<li><p>webpack.config.js中内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var debug = process.env.NODE_ENV !== &quot;production&quot;;</div><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  context: path.join(__dirname),</div><div class="line">  devtool: debug ? &quot;inline-sourcemap&quot; : null,</div><div class="line">  entry: &quot;./src/js/index.js&quot;, //这里是入口文件地址,可根据自身的位置进行修改</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123;</div><div class="line">        test: /\.js?$/,</div><div class="line">        exclude: /(node_modules)/,</div><div class="line">        loader: &apos;babel-loader&apos;,</div><div class="line">        query: &#123;</div><div class="line">          presets: [&apos;react&apos;, &apos;es2015&apos;],</div><div class="line">          plugins: [&apos;react-html-attrs&apos;], //添加组件的插件配置</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      //下面是使用 ant-design 的配置文件</div><div class="line">      &#123; test: /\.css$/, loader: &apos;style-loader!css-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname,</div><div class="line">    filename: &quot;./src/bundle.js&quot;</div><div class="line">  &#125;,</div><div class="line">  plugins: debug ? [] : [</div><div class="line">    new webpack.optimize.DedupePlugin(),</div><div class="line">    new webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">    new webpack.optimize.UglifyJsPlugin(&#123; mangle: false, sourcemap: false &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>此时文件目录如下:<br><img src="http://static.zybuluo.com/leeahui424/82ssq6ipzowpjgyfo8inljdh/image_1bmvtd29847r94g6kc1ehn57f20.png" alt="webpack配置文件"></p>
+</li>
+</ul>
+<p>####<strong>3.4 利用webpack打包</strong></p>
+<ul>
+<li><p>再命令行中输入以下命令,注意在根目录下输入</p>
+<blockquote>
+<p>webpack</p>
+</blockquote>
+</li>
+<li><p>此时可以看到src文件夹下自动生成了bundle.js<br><img src="http://static.zybuluo.com/leeahui424/p4iwz5wonewircittdx78c7x/image_1bmvtho19e2o11al1njjsk55m72d.png" alt="webpack编译完成后"></p>
+</li>
+<li><p>重新打开index.html, 可以看到,页面已经被渲染成Hello World!<br><img src="http://static.zybuluo.com/leeahui424/2xobmi5jxihaos9ofhxoudet/image_1bmvtjg1e1a3m1h5c1vlde6v1bv22q.png" alt="webpack编译完成后的index.html"></p>
+</li>
+</ul>
+<p>####<strong>3.5 实现Webpack热加载</strong></p>
+<p><strong>Q: 为什么要实现热加载?</strong></p>
+<blockquote>
+<p>如果每次在文件中进行了操作, 那么需要每次在命令行中输入webpack进行编译后才能够在浏览器中看到效果. 这也就是为什么要实现热加载的原因.webpack-dev-server会帮我们创建一个本地服务器,我们在编辑器中编辑后,就能实时的在浏览器中看到效果</p>
+</blockquote>
+<ul>
+<li><p>热加载: 在命令行中输入以下命令</p>
+<blockquote>
+<p>webpack-dev-server –inline –hot</p>
+</blockquote>
+</li>
+<li><p>此时webpack-dev-server会监听8080端口,我们在编辑器中进行的操作,就可以实时加载到localhost:8080上!<br><img src="http://static.zybuluo.com/leeahui424/0584g947bpqbm7a637s193wy/image_1bmvu0kgd11k41u6u3mil921p5f37.png" alt="webpack热加载完成后的index.html"></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>####<strong>本例中的源文件下载地址:</strong></p>
+<ol>
+<li>百度网盘: <a href="https://pan.baidu.com/s/1o8Bhm3o" target="_blank" rel="external">https://pan.baidu.com/s/1o8Bhm3o</a> 密码: 3ttf</li>
+<li>GitHub: <a href="https://github.com/Lee-Tanghui/React-init.git" target="_blank" rel="external">https://github.com/Lee-Tanghui/React-init.git</a></li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/inherit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -844,7 +1088,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

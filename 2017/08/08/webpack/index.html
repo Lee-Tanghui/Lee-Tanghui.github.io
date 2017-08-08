@@ -91,24 +91,27 @@
 
 
 
-<meta name="description" content="前言 个人观点,供您参考 观点源自作者的使用经验和日常研究 排名基于框架的受欢迎度, 语法结构, 易用性等特性 希望大家能够基于此视频找到最适合自己的框架 下面介绍的都是严格的前端框架和库   Top5: PolymerPolymer是由谷歌Chorme组织内的前端开发团队领导的一个开源项目, 该项目的口号是: [UseThePlatform]. 团队相信, 拥抱现代Web平台是向用户和开发人员提">
+<meta name="description" content="一.React环境配置####1.1  配置前的准备   新建一个空文件夹,命名为项目名.点击文件夹,进入根目录下  在项目文件夹的根目录下开启命令行, window操作系统为在根目录下 shift + 鼠标右键, 再点击 open command window(打开window命令行工具) 注意: 以下的操作都是在项目文件夹的根目录下的cmd中进行操作. 考虑到下载包的效率, 下载的操作我这里全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017年,前端应该学习的5个JavaScript框架">
-<meta property="og:url" content="http://yoursite.com/2017/05/24/hello-world/index.html">
+<meta property="og:title" content="React环境配置 &amp;  Webpack实现热加载">
+<meta property="og:url" content="http://yoursite.com/2017/08/08/webpack/index.html">
 <meta property="og:site_name" content="李棠辉的个人博客">
-<meta property="og:description" content="前言 个人观点,供您参考 观点源自作者的使用经验和日常研究 排名基于框架的受欢迎度, 语法结构, 易用性等特性 希望大家能够基于此视频找到最适合自己的框架 下面介绍的都是严格的前端框架和库   Top5: PolymerPolymer是由谷歌Chorme组织内的前端开发团队领导的一个开源项目, 该项目的口号是: [UseThePlatform]. 团队相信, 拥抱现代Web平台是向用户和开发人员提">
+<meta property="og:description" content="一.React环境配置####1.1  配置前的准备   新建一个空文件夹,命名为项目名.点击文件夹,进入根目录下  在项目文件夹的根目录下开启命令行, window操作系统为在根目录下 shift + 鼠标右键, 再点击 open command window(打开window命令行工具) 注意: 以下的操作都是在项目文件夹的根目录下的cmd中进行操作. 考虑到下载包的效率, 下载的操作我这里全">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-0e3cefbca75b2cc8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-1a1907ecd9b8fceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-e63dfa65c85bc414.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-5df3ada7e84a53b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-7fe7117ce45dd678.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-ccab4a1281ff16bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
-<meta property="og:updated_time" content="2017-07-20T13:53:29.823Z">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/fta85v4q8egv7ztr3hkyvtww/image_1bmvp3pua7be1fk8n7mqgvb75m.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/xreixeyqnmomg19nwh30wfx1/image_1bmvphs691thrs5arpne8f1f8b2d.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/ul69f29o9ealas85bqyczors/image_1bmvq0v1nv0hn017j21mn57j637.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/t388yqd048ln9vncy7pvzcyk/image_1bmvs2tca1h6o1e3d12bb105mvjg16.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/26k8jnqgbwhp5o7g8pkqcir6/image_1bmvtapvjtq5ptc1d5n4skmdu1j.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/82ssq6ipzowpjgyfo8inljdh/image_1bmvtd29847r94g6kc1ehn57f20.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/p4iwz5wonewircittdx78c7x/image_1bmvtho19e2o11al1njjsk55m72d.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/2xobmi5jxihaos9ofhxoudet/image_1bmvtjg1e1a3m1h5c1vlde6v1bv22q.png">
+<meta property="og:image" content="http://static.zybuluo.com/leeahui424/0584g947bpqbm7a637s193wy/image_1bmvu0kgd11k41u6u3mil921p5f37.png">
+<meta property="og:updated_time" content="2017-08-08T04:40:53.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017年,前端应该学习的5个JavaScript框架">
-<meta name="twitter:description" content="前言 个人观点,供您参考 观点源自作者的使用经验和日常研究 排名基于框架的受欢迎度, 语法结构, 易用性等特性 希望大家能够基于此视频找到最适合自己的框架 下面介绍的都是严格的前端框架和库   Top5: PolymerPolymer是由谷歌Chorme组织内的前端开发团队领导的一个开源项目, 该项目的口号是: [UseThePlatform]. 团队相信, 拥抱现代Web平台是向用户和开发人员提">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5318700-0e3cefbca75b2cc8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680">
+<meta name="twitter:title" content="React环境配置 &amp;  Webpack实现热加载">
+<meta name="twitter:description" content="一.React环境配置####1.1  配置前的准备   新建一个空文件夹,命名为项目名.点击文件夹,进入根目录下  在项目文件夹的根目录下开启命令行, window操作系统为在根目录下 shift + 鼠标右键, 再点击 open command window(打开window命令行工具) 注意: 以下的操作都是在项目文件夹的根目录下的cmd中进行操作. 考虑到下载包的效率, 下载的操作我这里全">
+<meta name="twitter:image" content="http://static.zybuluo.com/leeahui424/fta85v4q8egv7ztr3hkyvtww/image_1bmvp3pua7be1fk8n7mqgvb75m.png">
 
 
 
@@ -136,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/24/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/08/webpack/"/>
 
 
 
 
 
-  <title>2017年,前端应该学习的5个JavaScript框架 | 李棠辉的个人博客</title>
+  <title>React环境配置 &  Webpack实现热加载 | 李棠辉的个人博客</title>
   
 
 
@@ -275,7 +278,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/24/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/08/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李棠辉">
@@ -292,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2017年,前端应该学习的5个JavaScript框架</h1>
+          <h1 class="post-title" itemprop="name headline">React环境配置 &  Webpack实现热加载</h1>
         
 
         <div class="post-meta">
@@ -304,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T00:12:07+08:00">
-                2017-05-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T12:24:07+08:00">
+                2017-08-08
               </time>
             
 
@@ -323,9 +326,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/24/hello-world/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/08/webpack/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/24/hello-world/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/08/webpack/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -350,70 +353,128 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ol>
-<li>个人观点,供您参考</li>
-<li>观点源自作者的使用经验和日常研究</li>
-<li>排名基于框架的受欢迎度, 语法结构, 易用性等特性</li>
-<li>希望大家能够基于此视频找到最适合自己的框架</li>
-<li>下面介绍的都是严格的前端框架和库</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-0e3cefbca75b2cc8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="前言"></p>
-<h4 id="Top5-Polymer"><a href="#Top5-Polymer" class="headerlink" title="Top5: Polymer"></a>Top5: Polymer</h4><p>Polymer是由谷歌Chorme组织内的前端开发团队领导的一个开源项目, 该项目的口号是: [UseThePlatform]. 团队相信, 拥抱现代Web平台是向用户和开发人员提供应用的最佳方式. 该producer介绍了Polymer的以下特性:</p>
-<ol>
-<li>Web组件:基于W3C标准的Web组件API.</li>
-<li>使用原生浏览器的技术:Web组件内嵌于原生浏览器, 所以不需要像jQuery, dojo等第三方库 ,可以和其他Web组件无缝协作.</li>
-<li>Behaviors:其独有的Behaviors去分享Web组件和申明其属性.</li>
-<li>封装:能够将代码和结构封装到相同位置.</li>
-<li>自定义元素:开发人员能够自定义元素, 添加标签和属性</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-1a1907ecd9b8fceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="Polymer"></p>
-<a id="more"></a>
-<h4 id="Top4-Ember"><a href="#Top4-Ember" class="headerlink" title="Top4: Ember"></a>Top4: Ember</h4><p>Ember.js是一款开源的JavaScript MVC框架，用来创建Web应用程序。它免除了样板文件并提供了一套标准的应用程序架构。 项目口号是:「A framework for creating ambitious web applications」。</p>
-<ol>
-<li>高效的生产力:其友好的API和符合人体工程学的设计理念, 使得开发人员能够快速完成构建工作</li>
-<li>命名约定: Ember通过命名约定这种方式最少的节约代码的缩写</li>
-<li>Ember-CLI:  开发Ember应用程序的官方命令行工具包,通过提供您在一个集成包中构建可生产就绪的Web应用程序所需的一切</li>
-<li>丰富的插件: Ember提供丰富的插件,能够轻松的在应用程序之间共享通用代码</li>
-<li>Handlebars集成模板: 能够在底层数据更改时自动更新, 可以大大减少代码量</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-e63dfa65c85bc414.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="Ember"></p>
-<h4 id="Top3-Angular"><a href="#Top3-Angular" class="headerlink" title="Top3: Angular"></a>Top3: Angular</h4><p>AngularJS最初由Misko Hevery 和Adam Abrons于2009年开发，后来成为了Google公司的项目。AngularJS弥补了HTML在构建应用方面的不足，其通过使用标识符（directives）结构，来扩展Web应用中的HTML词汇，使开发者可以使用HTML来声明动态内容，从而使得Web开发和测试工作变得更加容易.</p>
-<ol>
-<li>全功能框架:具有HTML模块, 其特有的模块化, 自动化双向数据绑定, 语义化标签, 依赖注入等属性. 特别适合重量级的应用开发.</li>
-<li>十分流行:首先它由Google维护. 其次是因为Angular是MEAN全堆栈的一部分</li>
-<li>Angular CLI : 只需要掌握几条命令就可以构建Angular项目</li>
-<li>TypeScript: Angular默认使用的TypeScript写,对喜欢TypeScript的开发者更加友好.</li>
-<li>使用Ionic框架: Ionic框架被用来建立Hybrid App, 是目前最有潜力的一款HTML5手机应用开发框架.</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-5df3ada7e84a53b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="Angular"></p>
-<h4 id="Top2-React"><a href="#Top2-React" class="headerlink" title="Top2: React"></a>Top2: React</h4><p>React 起源于 Facebook 的内部项目, 近年来,React从最早的UI引擎变成了一整套前后端通吃的 Web App 解决方案. React的理念是:[ Learn once, write everywhere]</p>
-<ol>
-<li>轻量&amp;高效: 和Angular不同,React并不是全功能框架, 所以比较轻量. 虚拟DOM也使得拥有很好的性能表现.</li>
-<li>十分火: 可以替代Angular成为MERN全堆栈的一部分.</li>
-<li>Flux&amp;Redux: 虽然React在视图层中运行,但是也可以使用Flux和Redux</li>
-<li>创造响应式应用:React提供了响应式的视图组件和自有的命令行</li>
-<li>移动端应用:Producer认为React是最好用的搭建移动端应用的框架</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-7fe7117ce45dd678.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="React"></p>
-<h4 id="Top1-Vue-js"><a href="#Top1-Vue-js" class="headerlink" title="Top1: Vue.js"></a>Top1: Vue.js</h4><p>Vue.js是一种渐进式的JavaScript框架. 与其他重量级框架不同的是,Vue 采用自底向上增量开发的设计.Vue 的核心库只关注视图层,它不仅易于上手,还便于与第三方库或既有项目整合.</p>
-<ol>
-<li>简单: 比较其他框架,有着更友善的学习曲线, 只有使用者有基本的HTML和JavaScript知识, 都可以学习使用Vue</li>
-<li>灵活 &amp; 生产性高:  在Vue2.0版本中添加了模板功能,其简单小巧的核心,渐进式的技术栈,可以应付所有应用.</li>
-<li>速度快: Vue的虚拟DOM优化很好,速度十分的快,特别适合开发要求比较高的数据可视化和动画的应用中.</li>
-<li>v-model &amp; 2 way data binding: 可以使用v-model和2 way model进行数据绑定</li>
-<li>Vue-CLI:Vue有自己的命令行,部署Vue比Angular简单很多.</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-ccab4a1281ff16bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680" alt="Vue.js"></p>
-<hr>
+        <h2 id="一-React环境配置"><a href="#一-React环境配置" class="headerlink" title="一.React环境配置"></a><strong>一.React环境配置</strong></h2><p>####<strong>1.1  配置前的准备</strong></p>
 <blockquote>
-<p>本文内容来自<a href="https://www.youtube.com/user/TechGuyWeb" target="_blank" rel="external">Traversy Media</a>频道中看到的视频内容,翻译后,供您参考!</p>
-</blockquote>
 <ul>
-<li><p>原YouTube视频：<a href="https://www.youtube.com/watch?v=_vL8s5ayuFk&amp;feature=youtu.be" target="_blank" rel="external">Top 5 JavaScript Frameworks 2017</a></p>
+<li>新建一个空文件夹,命名为项目名.点击文件夹,进入根目录下 </li>
+<li>在项目文件夹的根目录下开启命令行, window操作系统为在根目录下 <strong>shift + 鼠标右键</strong>, 再点击 <strong>open command window</strong>(打开window命令行工具)</li>
+<li>注意: 以下的操作都是在项目文件夹的<strong>根目录下的cmd中</strong>进行操作.</li>
+<li>考虑到下载包的效率, 下载的操作我这里全部使用的<strong>cnpm</strong>, 同样可以使用<strong>npm</strong>. <strong>cnpm</strong>为<strong>npm</strong>的淘宝镜像<a href="http://npm.taobao.org/" target="_blank" rel="external">http://npm.taobao.org/</a></li>
+</ul>
+</blockquote>
+<p>####<strong>1.2 初始化 <em>package.json</em> 配置文件</strong><br><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>npm init</p>
+</blockquote>
+<ol>
+<li><p>点击Enter之后,会出现包的一些配置参数,根据需求设置即可.<br><img src="http://static.zybuluo.com/leeahui424/fta85v4q8egv7ztr3hkyvtww/image_1bmvp3pua7be1fk8n7mqgvb75m.png" alt="npm init"></p>
 </li>
-<li><p>强烈推荐该YouTube频道 :<a href="https://www.youtube.com/user/TechGuyWeb" target="_blank" rel="external">Traversy Media</a></p>
+<li><p>最后出现<code>Is this ok?</code>,输入<code>yes</code>,就可以看见出现了一个 <em>package.json</em> 文件.该配置文件为包的目录文件.<br><img src="http://static.zybuluo.com/leeahui424/xreixeyqnmomg19nwh30wfx1/image_1bmvphs691thrs5arpne8f1f8b2d.png" alt="npm init配置完成"></p>
+</li>
+</ol>
+<p>####<strong>1.3 安装React和React-DOM</strong></p>
+<p><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install –save react react-dom </p>
+</blockquote>
+<p>####<strong>1.4 安装babel及其依赖</strong></p>
+<p><strong>在命令行输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install babel-preset-es2015 babelify babel-preset-react  babel-plugin-react-html-attrs babel-loader –save</p>
+</blockquote>
+<p>####<strong>1.5 React和Babel安装完成后的目录如下</strong><br><img src="http://static.zybuluo.com/leeahui424/ul69f29o9ealas85bqyczors/image_1bmvq0v1nv0hn017j21mn57j637.png" alt="安装完react和babel后的文件目录"></p>
+<ul>
+<li>此时可以看到,项目文件夹内有了 <em>node_modules</em> 这个文件夹, 且 <em>package.json</em> 这个文件中,也有了我们安装的 react 和 babel 的包.</li>
+</ul>
+<hr>
+<h2 id="二-webpack安装"><a href="#二-webpack安装" class="headerlink" title="二.webpack安装"></a><strong>二.webpack安装</strong></h2><p>####<strong>2.1 在全局下安装webpack</strong></p>
+<p><strong>在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install -g webpack</p>
+</blockquote>
+<p>####<strong>2.2 在全局下安装webpack-dev-server</strong></p>
+<p><strong>1. 在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install -g webpack-dev-server</p>
+</blockquote>
+<p><strong>2. 如果安装时出现:<br><code>Error: EPERM: operation not permitted, mkdir &#39;C:\Program Files\nodejs\node_modules\webpack-dev-server_tmp&#39;
+    at Error (native)</code>报错信息,请使用windows + x 使用admin权限进行安装</strong></p>
+<p>####<strong>2.3 在项目根目录下下安装webpack</strong></p>
+<p><strong>在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install webpack –save</p>
+</blockquote>
+<p>####<strong>2.4 在项目根目录安装webpack-dev-server</strong></p>
+<p><strong>1. 在命令行下输入以下命令</strong></p>
+<blockquote>
+<p>cnpm install webpack-dev-server –save</p>
+</blockquote>
+<p><strong>2. 如果安装时出现:<br><code>Error: EPERM: operation not permitted, mkdir &#39;C:\Program Files\nodejs\node_modules\webpack-dev-server_tmp&#39;
+    at Error (native)</code>报错信息,请使用windows + x 使用admin权限进行安装</strong></p>
+<p>####<strong>2.5 Webpack安装完成后的目录如下</strong></p>
+<blockquote>
+<p>此时可以看到我们的 <em>package.json</em>文件中对添加了webpack和webpack-dev-server的的包.</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/leeahui424/t388yqd048ln9vncy7pvzcyk/image_1bmvs2tca1h6o1e3d12bb105mvjg16.png" alt="web安装完成后的文件目录"></p>
+<hr>
+<h2 id="三-实现webpack热加载-以Hello-World-举例"><a href="#三-实现webpack热加载-以Hello-World-举例" class="headerlink" title="三.实现webpack热加载(以Hello World!举例)"></a><strong>三.实现webpack热加载(以Hello World!举例)</strong></h2><p>####<strong>3.1 在根目录下新建index.html</strong></p>
+<ul>
+<li>index.html中内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;example&quot;&gt;我是主页&lt;/div&gt;</div><div class="line">&lt;script src=&quot;./src/bundle.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>这里的<code>bundle.js</code>是随后webpack打包后生成的文件.</li>
+<li>此时打开index.html,效果如下<br><img src="http://static.zybuluo.com/leeahui424/26k8jnqgbwhp5o7g8pkqcir6/image_1bmvtapvjtq5ptc1d5n4skmdu1j.png" alt="未编译之前的index.html"></li>
+</ul>
+<p>####<strong>3.2 新建index.js用作入口文件</strong></p>
+<ul>
+<li>在根目录下新建src文件夹</li>
+<li>在src文件夹下新建js文件夹</li>
+<li>在js文件夹下新建index.js文件, index.js内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;);</div><div class="line">var ReactDOM = require(&apos;react-dom&apos;);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;h1&gt;Hello World!&lt;/h1&gt;,</div><div class="line">    document.getElementById(&apos;example&apos;)</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>####<strong>3.3 在根目录下新建webpack.config.js</strong></p>
+<ul>
+<li><p>webpack.config.js中内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var debug = process.env.NODE_ENV !== &quot;production&quot;;</div><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  context: path.join(__dirname),</div><div class="line">  devtool: debug ? &quot;inline-sourcemap&quot; : null,</div><div class="line">  entry: &quot;./src/js/index.js&quot;, //这里是入口文件地址,可根据自身的位置进行修改</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123;</div><div class="line">        test: /\.js?$/,</div><div class="line">        exclude: /(node_modules)/,</div><div class="line">        loader: &apos;babel-loader&apos;,</div><div class="line">        query: &#123;</div><div class="line">          presets: [&apos;react&apos;, &apos;es2015&apos;],</div><div class="line">          plugins: [&apos;react-html-attrs&apos;], //添加组件的插件配置</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      //下面是使用 ant-design 的配置文件</div><div class="line">      &#123; test: /\.css$/, loader: &apos;style-loader!css-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname,</div><div class="line">    filename: &quot;./src/bundle.js&quot;</div><div class="line">  &#125;,</div><div class="line">  plugins: debug ? [] : [</div><div class="line">    new webpack.optimize.DedupePlugin(),</div><div class="line">    new webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">    new webpack.optimize.UglifyJsPlugin(&#123; mangle: false, sourcemap: false &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>此时文件目录如下:<br><img src="http://static.zybuluo.com/leeahui424/82ssq6ipzowpjgyfo8inljdh/image_1bmvtd29847r94g6kc1ehn57f20.png" alt="webpack配置文件"></p>
 </li>
 </ul>
+<p>####<strong>3.4 利用webpack打包</strong></p>
+<ul>
+<li><p>再命令行中输入以下命令,注意在根目录下输入</p>
+<blockquote>
+<p>webpack</p>
+</blockquote>
+</li>
+<li><p>此时可以看到src文件夹下自动生成了bundle.js<br><img src="http://static.zybuluo.com/leeahui424/p4iwz5wonewircittdx78c7x/image_1bmvtho19e2o11al1njjsk55m72d.png" alt="webpack编译完成后"></p>
+</li>
+<li><p>重新打开index.html, 可以看到,页面已经被渲染成Hello World!<br><img src="http://static.zybuluo.com/leeahui424/2xobmi5jxihaos9ofhxoudet/image_1bmvtjg1e1a3m1h5c1vlde6v1bv22q.png" alt="webpack编译完成后的index.html"></p>
+</li>
+</ul>
+<p>####<strong>3.5 实现Webpack热加载</strong></p>
+<p><strong>Q: 为什么要实现热加载?</strong></p>
+<blockquote>
+<p>如果每次在文件中进行了操作, 那么需要每次在命令行中输入webpack进行编译后才能够在浏览器中看到效果. 这也就是为什么要实现热加载的原因.webpack-dev-server会帮我们创建一个本地服务器,我们在编辑器中编辑后,就能实时的在浏览器中看到效果</p>
+</blockquote>
+<ul>
+<li><p>热加载: 在命令行中输入以下命令</p>
+<blockquote>
+<p>webpack-dev-server –inline –hot</p>
+</blockquote>
+</li>
+<li><p>此时webpack-dev-server会监听8080端口,我们在编辑器中进行的操作,就可以实时加载到localhost:8080上!<br><img src="http://static.zybuluo.com/leeahui424/0584g947bpqbm7a637s193wy/image_1bmvu0kgd11k41u6u3mil921p5f37.png" alt="webpack热加载完成后的index.html"></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>####<strong>本例中的源文件下载地址:</strong></p>
+<ol>
+<li>百度网盘: <a href="https://pan.baidu.com/s/1o8Bhm3o" target="_blank" rel="external">https://pan.baidu.com/s/1o8Bhm3o</a> 密码: 3ttf</li>
+<li>GitHub: <a href="https://github.com/Lee-Tanghui/React-init.git" target="_blank" rel="external">https://github.com/Lee-Tanghui/React-init.git</a></li>
+</ol>
+</blockquote>
 
       
     </div>
@@ -450,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/10/webway/" rel="next" title="前端2017年学习路线指南">
-                <i class="fa fa-chevron-left"></i> 前端2017年学习路线指南
+              <a href="/2017/07/26/inherit/" rel="next" title="深入理解原型、原型链、继承">
+                <i class="fa fa-chevron-left"></i> 深入理解原型、原型链、继承
               </a>
             
           </div>
@@ -459,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/26/location/" rel="prev" title="H5获取用户位置API + 百度地图API介绍">
-                H5获取用户位置API + 百度地图API介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -633,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top5-Polymer"><span class="nav-number">2.</span> <span class="nav-text">Top5: Polymer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top4-Ember"><span class="nav-number">3.</span> <span class="nav-text">Top4: Ember</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top3-Angular"><span class="nav-number">4.</span> <span class="nav-text">Top3: Angular</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top2-React"><span class="nav-number">5.</span> <span class="nav-text">Top2: React</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top1-Vue-js"><span class="nav-number">6.</span> <span class="nav-text">Top1: Vue.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-React环境配置"><span class="nav-number">1.</span> <span class="nav-text">一.React环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-webpack安装"><span class="nav-number">2.</span> <span class="nav-text">二.webpack安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-实现webpack热加载-以Hello-World-举例"><span class="nav-number">3.</span> <span class="nav-text">三.实现webpack热加载(以Hello World!举例)</span></a></li></ol></div>
             
 
           </div>
@@ -776,9 +833,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/05/24/hello-world/';
-          this.page.identifier = '2017/05/24/hello-world/';
-          this.page.title = '2017年,前端应该学习的5个JavaScript框架';
+          this.page.url = 'http://yoursite.com/2017/08/08/webpack/';
+          this.page.identifier = '2017/08/08/webpack/';
+          this.page.title = 'React环境配置 &  Webpack实现热加载';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
