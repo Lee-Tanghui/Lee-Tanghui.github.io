@@ -91,34 +91,17 @@
 
 
 
-<meta name="description" content="作为一名Web开发人员和设计师，到底应该在2017年学习什么技术？ 在本指南中，将讨论所有最新技术，告诉你如何正确的学习前端, 哪些知识是必须掌握的?哪些知识是可以作为补充学习的? 第一步: 掌握HTML/CSS  这是你最初必须掌握的 是网站的构建元素 没得选! 随着你前端的学习进程,熟练掌握 HTML/CSS简单易学">
+<meta name="description" content="###一.前言 上午把近日用React做的一个新闻项目所依赖的包升级到了最新的版本,其中从react-router(2.8.1)升级到react-router(4.1.2)中出现了很多问题, 故总结一下在升级过程中遇到的问题. ###二.react-router,V4版本修改内容 ####1. 所有组件更改为从react-router-dom导入 之前的所有路由组件均是从react-router中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端2017年学习路线指南">
-<meta property="og:url" content="http://yoursite.com/2017/05/10/webway/index.html">
+<meta property="og:title" content="react-router4更新踩坑">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/reactRouterChange/index.html">
 <meta property="og:site_name" content="李棠辉的个人博客">
-<meta property="og:description" content="作为一名Web开发人员和设计师，到底应该在2017年学习什么技术？ 在本指南中，将讨论所有最新技术，告诉你如何正确的学习前端, 哪些知识是必须掌握的?哪些知识是可以作为补充学习的? 第一步: 掌握HTML/CSS  这是你最初必须掌握的 是网站的构建元素 没得选! 随着你前端的学习进程,熟练掌握 HTML/CSS简单易学">
+<meta property="og:description" content="###一.前言 上午把近日用React做的一个新闻项目所依赖的包升级到了最新的版本,其中从react-router(2.8.1)升级到react-router(4.1.2)中出现了很多问题, 故总结一下在升级过程中遇到的问题. ###二.react-router,V4版本修改内容 ####1. 所有组件更改为从react-router-dom导入 之前的所有路由组件均是从react-router中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-8eca8e26ea3fe556.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-d40500e05db4f76d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-34a45525af10a7d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-9a072b792babf513.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-01395b4f1fa82f81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-0d253d31300e18c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-436be30ec078c947.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-0057f45f09a0c24f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-93bc2179bdcac1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-1ee2582523e32e2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-586daa28a79a7353.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-5fe61a76be8ad44a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-8c45a7182364beb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-d79193126be41432.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-8b3c5602247252ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5318700-0fdb4d1d001bd8cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-20T13:52:40.840Z">
+<meta property="og:updated_time" content="2017-08-20T00:47:52.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端2017年学习路线指南">
-<meta name="twitter:description" content="作为一名Web开发人员和设计师，到底应该在2017年学习什么技术？ 在本指南中，将讨论所有最新技术，告诉你如何正确的学习前端, 哪些知识是必须掌握的?哪些知识是可以作为补充学习的? 第一步: 掌握HTML/CSS  这是你最初必须掌握的 是网站的构建元素 没得选! 随着你前端的学习进程,熟练掌握 HTML/CSS简单易学">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5318700-8eca8e26ea3fe556.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="react-router4更新踩坑">
+<meta name="twitter:description" content="###一.前言 上午把近日用React做的一个新闻项目所依赖的包升级到了最新的版本,其中从react-router(2.8.1)升级到react-router(4.1.2)中出现了很多问题, 故总结一下在升级过程中遇到的问题. ###二.react-router,V4版本修改内容 ####1. 所有组件更改为从react-router-dom导入 之前的所有路由组件均是从react-router中">
 
 
 
@@ -146,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/10/webway/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/reactRouterChange/"/>
 
 
 
 
 
-  <title>前端2017年学习路线指南 | 李棠辉的个人博客</title>
+  <title>react-router4更新踩坑 | 李棠辉的个人博客</title>
   
 
 
@@ -285,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/webway/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/reactRouterChange/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李棠辉">
@@ -302,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端2017年学习路线指南</h1>
+          <h1 class="post-title" itemprop="name headline">react-router4更新踩坑</h1>
         
 
         <div class="post-meta">
@@ -314,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T22:24:07+08:00">
-                2017-05-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T13:32:07+08:00">
+                2017-08-14
               </time>
             
 
@@ -333,9 +316,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/10/webway/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/14/reactRouterChange/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/10/webway/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/14/reactRouterChange/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -360,156 +343,34 @@
       
 
       
-        <p><strong>作为一名Web开发人员和设计师，到底应该在2017年学习什么技术？ 在本指南中，将讨论所有最新技术，告诉你如何正确的学习前端, 哪些知识是必须掌握的?哪些知识是可以作为补充学习的?</strong></p>
-<p><strong>第一步: 掌握HTML/CSS</strong></p>
-<ol>
-<li>这是你最初<strong>必须</strong>掌握的</li>
-<li>是网站的构建元素</li>
-<li>没得选!</li>
-<li>随着你前端的学习进程,熟练掌握</li>
-<li>HTML/CSS简单易学</li>
-</ol>
-<a id="more"></a>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-8eca8e26ea3fe556.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="掌握HTML/CSS"><br><strong>第二步: 使用基础工具</strong></p>
-<ol>
-<li>文本编辑器: Notepad2 / Sublime Text / Atom.io / IDE</li>
-<li>图像编辑器:Photoshop, Illustrator, GIMP, Something slse</li>
-<li>FTP / SSH 工具 : Filezilla ,Putty</li>
-<li>好的浏览器: Chrome</li>
-<li>云盘: Dropbox, Google Drive, Box</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-d40500e05db4f76d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基础工具"></p>
-<p><strong>第三步: 学习原生JavaScript</strong></p>
-<ol>
-<li>原生JavaScript(现阶段不需要理会Node.js 和任何框架)</li>
-<li>理解数据类型: String, Number, Arrays, Objects, etc</li>
-<li>理解函数, 条件表达式, 循环,操作符等</li>
-<li>事件处理</li>
-<li>JSON(JavaScript Object Notation), JavaScript对象表示法</li>
-<li>jQuery框架</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-34a45525af10a7d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原生JavaScript"></p>
-<p><strong>第四步:搭建一个基础网站:</strong></p>
-<ol>
-<li>获取一个虚拟主机账户(Hostgator, InMotion, etc)</li>
-<li>学习虚拟主机控制系统基础——cPanel (Email ,FTP Setup)</li>
-<li>通过FPT(文件传输协议)上传你的项目</li>
-<li>创建域名并和你的主机连接</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-9a072b792babf513.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搭建网站"></p>
-<p><strong>第五步:恭喜你! 你现在是一个网页设计师了!——(现阶段还不足以称Web Developer)</strong></p>
-<ol>
-<li>有能力搭建一个专业的简单网站</li>
-<li>有能力搭建网页应用的界面</li>
-<li>能够把一张PSD 转化为基于HTML/CSS的静态网页</li>
-<li>有在公司上班的实力, 或者选择成为一名自由职业者</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-01395b4f1fa82f81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="网页设计师阶段"></p>
-<p><strong>第六步: 思考接下来的侧重点!</strong></p>
-<ol>
-<li>HTML/CSS框架: Bootstrap, Foudation(建议优先掌握!)</li>
-<li>服务器端语言: PHP, Ruby….</li>
-<li>JavaScript框架: React ,Angular</li>
-<li>数据库: MySQL, PostgreSQL</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-0d253d31300e18c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="思考下一步"></p>
-<p><strong>第七步: HTML/CSS框架</strong></p>
-<ol>
-<li>Bootstrap(强烈推荐学习该框架!)</li>
-<li>Zurb Foundation</li>
-<li>Skeleton</li>
-<li>MUI</li>
-<li>Pure</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-436be30ec078c947.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTML/CSS框架"></p>
-<p><strong>第八步: 服务器端编程语言(专注于一个!)</strong></p>
-<ol>
-<li>PHP(不是最好的语言,但是是最可靠的服务器端语言)</li>
-<li>Node.js(一款新型, 强大的后台语言)</li>
-<li>Ruby on Rails (最好的框架,但已经到了瓶颈期)</li>
-<li>Python(简单易学,但相对于主流语言并不流行)——可现在AI的爆红导致Python最近很火!</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-0057f45f09a0c24f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="服务器端编程语言"></p>
-<p><strong>第九步: 数据库(专注于一个!)</strong></p>
-<ol>
-<li>关系型数据库: MySQL 和 PostgreSQL</li>
-<li>非机构化数据库: MongoDB 和 CouchDB</li>
-<li>建议选择一个以下的组合:<ul>
-<li>PHP/ MySQL</li>
-<li>Node.js/ MongoDB</li>
-</ul>
-</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-93bc2179bdcac1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据库"></p>
-<p><strong>第十步: 需要学习的一些端技术</strong></p>
-<ol>
-<li>Git &amp; Github</li>
-<li>SSH(安全外壳协议) &amp; Basic Command Line</li>
-<li>CSS 预编译器: Sass/Less</li>
-<li>APIS / REST Service</li>
-<li>HTTPS / SSL</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-1ee2582523e32e2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="端技术"></p>
-<p><strong>第十一步: 部署应用</strong></p>
-<ol>
-<li>专用服务器/ VPS</li>
-<li>应用云平台: Heroku, Digital Ocean, AWS</li>
-<li>部署工具</li>
-<li>Linux命令行</li>
-<li>维护和升级</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-586daa28a79a7353.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" 部署应用"></p>
-<p><strong>第十二步:恭喜你,你现在成为一名网页开发者了!</strong></p>
-<ol>
-<li>能够创造出网页引用</li>
-<li>能构建后端APIs</li>
-<li>能连接服务器</li>
-<li>能够管理数据库</li>
-<li>你的选择: 得到一份很好的工作 / 成为自由职业者 / 开始一项事业</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-5fe61a76be8ad44a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Web Developer阶段"></p>
-<p><strong>第十三步:编程框架</strong></p>
-<ol>
-<li>JavaScript框架: React, Angular 2, Vue.js, Express(后端)</li>
-<li>PHP框架: Laravel, Codeigniter, Symfony</li>
-<li>Ruby on rails</li>
-<li>MVC框架: Routing, Database Mapping, Helpers, Data Binding, Templating &amp; UI</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-8c45a7182364beb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="编程框架"></p>
-<p><strong>第十四步: 内容管理系统(基于PHP)</strong></p>
-<ol>
-<li>Wordpress(强烈推荐), Joomla, Drupal</li>
-<li>有利用客户更新和维护</li>
-<li>丰富的插件</li>
-<li>开发速度快</li>
-<li>模板的功能有限</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-d79193126be41432.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内容管理系统"></p>
-<p><strong>第十五步: 移动App发展</strong></p>
-<ol>
-<li>这是未来的趋势</li>
-<li>你不需要学习Java 和C语言!</li>
-<li>你只需要掌握JavaScript!我们可以使用React Native, Ionic, Cordova 等框架来构建移动App</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-8b3c5602247252ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" 移动App发展"></p>
-<p><strong>第十六步:现阶段,现在你需要考虑什么?</strong></p>
-<ol>
-<li>专注于你的事业</li>
-<li>回去学习更多的数据结构</li>
-<li>跟进现在的新技术</li>
-<li>学习一门高级语言,类似于Java, C语言</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/5318700-0fdb4d1d001bd8cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下一步?"></p>
-<hr>
+        <p>###<strong>一.前言</strong></p>
+<p>上午把近日用React做的一个新闻项目所依赖的包升级到了最新的版本,其中从react-router(2.8.1)升级到react-router(4.1.2)中出现了很多问题, 故总结一下在升级过程中遇到的问题.</p>
+<p>###<strong>二.react-router,V4版本修改内容</strong></p>
+<p>####<strong>1. 所有组件更改为从<code>react-router-dom</code>导入</strong></p>
+<p>之前的所有路由组件均是从<code>react-router</code>中导入,在我之前的项目中,导入相关组件如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v2</span></div><div class="line"><span class="keyword">import</span> &#123;Router,Route,hashHistory&#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div></pre></td></tr></table></figure></p>
+<p>在react-router4 开始,所有的router组件均是从<code>react-router-dom</code>中导入, 所以一下的需要更改为以下代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v4</span></div><div class="line"><span class="keyword">import</span> &#123;Route,BrowserRouter, Switch&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</div></pre></td></tr></table></figure></p>
+<p>细心的你发现在,到导入的过程中,我删除了<code>Router</code>,但是增加了<code>BorwerRouter</code>和<code>Switch</code>,下面我会一步步的说明.</p>
+<p>####<strong>2. 将所有<code>&lt;Router&gt;</code>替换为<code>&lt;BrowserRouter&gt;</code></strong><br>之前v2中的代码如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v2</span></div><div class="line"> &lt;Router history=&#123;hashHistory&#125;&gt;</div><div class="line">    &lt;Route path="/" component=&#123;PCIndex&#125;&gt;&lt;/Route&gt;</div><div class="line">    &lt;Route path=<span class="string">"/details/:uniqueky"</span> component=&#123;PCNewsDetails&#125;&gt;&lt;/Route&gt;</div><div class="line">    &lt;Route path=<span class="string">"/usercenter"</span> component=&#123;PCUserCenter&#125;&gt;&lt;/Route&gt;</div><div class="line">  &lt;<span class="regexp">/Router&gt;</span></div></pre></td></tr></table></figure></p>
+<p>现在需要更改为<code>BrowserRouter</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v4</span></div><div class="line">&lt;BrowserRouter&gt;</div><div class="line">    &lt;Switch&gt;</div><div class="line">      &lt;Route exact path="/" component=&#123;MobileIndex&#125;&gt;&lt;/Route&gt;</div><div class="line">      &lt;Route path="/details/:uniqueky" component=&#123;MobileNewsDetails&#125;&gt;&lt;/Route&gt;</div><div class="line">      &lt;Route path="/usercenter" component=&#123;MobileUserCenter&#125;&gt;&lt;/Route&gt;</div><div class="line">    &lt;/Switch&gt;</div><div class="line">  &lt;<span class="regexp">/BrowserRouter&gt;</span></div></pre></td></tr></table></figure></p>
+<p>细心的你发现,这里的代码不仅仅是将<code>Router</code>替换为<code>BrowserRouter</code>,而且还把所有的<code>Route</code>中用<code>Switch</code>包裹起来. 下面就是v4的另一个修改.</p>
+<p>####<strong>3. <code>&lt;BrowserRouter&gt;</code>只能有一个子节点</strong><br><code>&lt;BroserRouter&gt;</code>只能有一个子节点,所以官网建议的是使用<code>&lt;Switch&gt;</code>进行包裹,官网给出的例子如下.</p>
 <blockquote>
-<p><strong>以上内容来自我于在YouTube上看的一个视频, 感觉到很受用, 所以把视频的要点进行翻译,供您参考!</strong></p>
+<p>In v3, you could specify a number of child routes, and only the first one that matched would be rendered.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// v3</span></div><div class="line">&lt;Route path=<span class="string">'/'</span> component=&#123;App&#125;&gt;</div><div class="line">  &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">  &lt;Route path='about' component=&#123;About&#125; /&gt;</div><div class="line">  &lt;Route path='contact' component=&#123;Contact&#125; /&gt;</div><div class="line">&lt;/Route&gt;</div></pre></td></tr></table></figure></p>
+<p>v4 provides a similar functionality with the <switch> component. When a <switch> is rendered, it will only render the first child <route> that matches the current location.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// v4</span></div><div class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">  &lt;Switch&gt;</div><div class="line">    &lt;Route exact path='/' component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path='/about' component=&#123;About&#125; /&gt;</div><div class="line">    &lt;Route path='/contact' component=&#123;Contact&#125; /&gt;</div><div class="line">  &lt;/Switch&gt;</div><div class="line">)</div></pre></td></tr></table></figure></route></switch></switch></p>
 </blockquote>
-<ul>
-<li><p>原YouTube视频：<a href="https://www.youtube.com/watch?v=9hDKfBKuXjI&amp;index=1&amp;list=PL_eqQPFbIlemgA29tR1Jtda0FWWYUpXHl" target="_blank" rel="external">Web Development In 2017 - A Practical Guide</a></p>
-</li>
-<li><p>强烈推荐该YouTube频道 :<a href="https://www.youtube.com/user/TechGuyWeb" target="_blank" rel="external">Traversy Media</a></p>
-</li>
-</ul>
+<p>####<strong>4. 最坑的地方:在当前目录下的文件路径不再使用<code>./</code>, 而是直接用<code>/</code>.</strong><br>在进行文件引用的时候 ,<code>./src/js</code>的写法需要更改文’/src/js’, 这是更改之后最坑的地方!!! 因为其他的更改,在控制台都会有着详细的错误提示, 然而找不到文件只会出现<code>404</code>!!!我真的找了好久的原因!!!</p>
+<p>记住!!! 在单页面中的引入的<code>css</code>文件和<code>bundle.js</code>的引入都需要更改, 在我的项目中的例子如下: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v2</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;&lt;/title&gt;</div><div class="line">        &lt;meta charset="UTF-8"&gt;</div><div class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</div><div class="line">        &lt;link rel="stylesheet" href="./src/css/pc.css"&gt;</div><div class="line">        &lt;link rel="stylesheet" href="./src/css/mobile.css"&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id="mainContainer"&gt;</div><div class="line">            </div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;script src="./src/bundle.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>上面的页面需要更改为下面这样,否则所有的文件都无法找到:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//v4</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;&lt;/title&gt;</div><div class="line">        &lt;meta charset="UTF-8"&gt;</div><div class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</div><div class="line">        &lt;link rel="stylesheet" href="/src/css/pc.css"&gt;</div><div class="line">        &lt;link rel="stylesheet" href="/src/css/mobile.css"&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id="mainContainer"&gt;</div><div class="line">            </div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;script src="/src/bundle.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>###<strong>三.更多信息</strong><br>以上就是我在我的项目中所遇到的坑,以及对应的处理办法.总的来说react-router4 rewrite之后变化还是挺大的.</p>
+<p><strong>1. 更多React-router v4的修改信息,请看Github:</strong></p>
+<blockquote>
+<p><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/migrating.md" target="_blank" rel="external">Migrating from v2/v3 to v4</a></p>
+</blockquote>
+<p><strong>2. 本文中的项目下载地址:</strong></p>
+<blockquote>
+<p>Github: <a href="https://github.com/Lee-Tanghui/React-news-project.git" target="_blank" rel="external">https://github.com/Lee-Tanghui/React-news-project.git</a></p>
+</blockquote>
 
       
     </div>
@@ -546,15 +407,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/08/webpack/" rel="next" title="React环境配置 &  Webpack实现热加载">
+                <i class="fa fa-chevron-left"></i> React环境配置 &  Webpack实现热加载
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/24/hello-world/" rel="prev" title="2017年,前端应该学习的5个JavaScript框架">
-                2017年,前端应该学习的5个JavaScript框架 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -843,9 +704,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/05/10/webway/';
-          this.page.identifier = '2017/05/10/webway/';
-          this.page.title = '前端2017年学习路线指南';
+          this.page.url = 'http://yoursite.com/2017/08/14/reactRouterChange/';
+          this.page.identifier = '2017/08/14/reactRouterChange/';
+          this.page.title = 'react-router4更新踩坑';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
